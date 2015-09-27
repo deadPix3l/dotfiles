@@ -22,4 +22,4 @@ bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 
 ~/.config/deskcolors
-~/.config/bspwm//panel | lemonbar -p &
+~/.config/bspwm/panel | lemonbar -p &
