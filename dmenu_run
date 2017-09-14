@@ -1,0 +1,32 @@
+#!/bin/bash
+
+#dmenu_run (Brisbin33 Version)
+# copy this file to /usr/bin/dmenu_run
+# this version adds caching and termnal support
+
+if [ -f $HOME/.dmenurc ]; then
+  . $HOME/.dmenurc
+else
+  DMENU='dmenu -i'
+fi
+
+TERMI='urxvt -e bash -lic'
+CACHE="$HOME/.dmenu_cache_recent"
+
+touch $CACHE
+MOST_USED=$(LC_ALL="C"; sort $CACHE | uniq -c | sort -r | colrm 1 8)
+RUN=$( (echo "$MOST_USED"; dmenu_path | grep -vxF "$MOST_USED") | $DMENU) && (echo $RUN; head -n99 $CACHE) > $CACHE.$$ && mv $CACHE.$$ $CACHE
+
+case $RUN in
+    *\;) $TERMI ${RUN/;/} & ;;
+    *)   $RUN &             ;;
+esac
+
+exit 0
+
+#.dmenurc:
+
+# makes dmenu identical across all scripts by sourcing this file
+# aur/dmenu-vertical-xft required for xft fonts
+
+#DMENU='dmenu -i -fn xft:Inconsolata-10 -r -x 0 -y 17 -nb #303030 -nf #909090 -sb #909090 -sf #303030'

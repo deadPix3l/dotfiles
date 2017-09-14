@@ -1,5 +1,11 @@
-feh  --bg-scale $HOME/wallpapers/1.png &
-xrdb -merge ~/.config/.Xresources &
+#!/bin/bash
 
-sxhkd -f 100 &
-exec bspwm
+[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
+
+~/.fehbg &
+
+# Polybar moved to i3 config.
+# polybar skybar &
+
+# exec bspwm
+exec i3
