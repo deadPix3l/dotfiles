@@ -1,0 +1,2 @@
+#!/bin/sh
+feh  --bg-scale '/home/sky/.config/wall.jpg' 
