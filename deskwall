@@ -1,7 +1,0 @@
-#!/bin/bash
-
-# a custom script to allow workspace independent wallpapers!
-# i.e. change the wallpaper everytime you change the desktop
-source ~/.config/deskcolors
-
-feh --bg-scale --no-fehbg wallpapers/$skycurrentmon.png

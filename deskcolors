@@ -1,7 +1,0 @@
-#!/bin/bash
-
-# set variables for bar and current monitor
-
-skycurrentmon=$(bspc query --desktops --desktop focused)
-skydeskcolors=(001122 ff0000 00ff00 0000ff)
-skybarcolor=${skydeskcolors[$skycurrentmon]}
