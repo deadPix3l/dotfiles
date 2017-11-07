@@ -11,7 +11,7 @@ filetype indent plugin on       " load filetype specific indent templates
 
 " code block folding {{{
 set foldenable                  " enabled folding code blocks
-"set foldlevelstart=10           " initially only fold blocks 10+ levels deep
+set foldlevelstart=10           " initially only fold blocks 10+ levels deep
 set foldnestmax=10              " maximum of nested folds.
 set foldmethod=indent           " fold all lines of same indent level
 " }}}
@@ -46,7 +46,6 @@ set laststatus=1                " show status line only when there's 2+ windows
 " }}}
 
 " Terrible Ideas {{{
-
 " set autoread                  " read in external changes
 " set nobackup                  " disable backups
 " set noswapfile                " disable swapfiles
