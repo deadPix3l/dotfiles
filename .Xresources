@@ -1,41 +1,99 @@
 URxvt*scrollBar: 			false
 URxvt*transparent: 			true
-!URxvt*tintColor:                       color
 URxvt*shading:				35	
 
-!
-! Custom colors and other stuff work keeping
-!
+! choose color scheme [default: nord]
+! uncomment line below to use base16
+!#define base16
 
-!URxvt*background:                     rgba:0000/0000/1111/ff80
-URxvt*foreground: 			white
-! URxvt*color0:                         color
-! URxvt*color1:                         color
-! URxvt*color2:                         color
-! URxvt*color3:                         color
-! URxvt*color4:                         color
-! URxvt*color5:                         color
-! URxvt*color6:                         color
-! URxvt*color7:                         color
-! URxvt*color8:                         color
-! URxvt*color9:                         color
-! URxvt*color10:                        color
-! URxvt*color11:                        color
-! URxvt*color12:                        color
-! URxvt*color13:                        color
-! URxvt*color14:                        color
-! URxvt*color15:                        color
-! URxvt*colorBD:                        color
-! URxvt*colorIT:                        color
-! URxvt*colorUL:                        color
-! URxvt*colorRV:                        color
-! URxvt*underlineColor:                 color
-! URxvt*scrollColor:                    color
-! URxvt*troughColor:                    color
-! URxvt*highlightColor:                 color
-! URxvt*highlightTextColor:             color
-! URxvt*cursorColor:                    color
-! URxvt*cursorColor2:                   color
-! URxvt*pointerColor:                   color
-! URxvt*pointerColor2:                  color
-! URxvt*borderColor:                    color
+! Base16 Default Dark
+! Scheme: Chris Kempson (http://chriskempson.com)
+
+#define base00 #181818
+#define base01 #282828
+#define base02 #383838
+#define base03 #585858
+#define base04 #b8b8b8
+#define base05 #d8d8d8
+#define base06 #e8e8e8
+#define base07 #f8f8f8
+#define base08 #ab4642
+#define base09 #dc9656
+#define base0A #f7ca88
+#define base0B #a1b56c
+#define base0C #86c1b9
+#define base0D #7cafc2
+#define base0E #ba8baf
+#define base0F #a16946
+
+! ++++++++++++++++++++++++++++++++++++++++++++++
+! title      Nord XResources                   +
+! version    0.1.0                             +
+! github     arcticicestudio/nord-xresources   +
+! ++++++++++++++++++++++++++++++++++++++++++++++
+#define nord0 #2E3440
+#define nord1 #3B4252
+#define nord2 #434C5E
+#define nord3 #4C566A
+#define nord4 #D8DEE9
+#define nord5 #E5E9F0
+#define nord6 #ECEFF4
+#define nord7 #8FBCBB
+#define nord8 #88C0D0
+#define nord9 #81A1C1
+#define nord10 #5E81AC
+#define nord11 #BF616A
+#define nord12 #D08770
+#define nord13 #EBCB8B
+#define nord14 #A3BE8C
+#define nord15 #B48EAD
+
+! ------------------------------------
+!   My Colors - All color Scheme     |
+! ------------------------------------
+#ifdef base16
+  *.foreground:   base05
+  *.background:   base00
+  *.cursorColor:  base05
+
+  *.color0:       base00
+  *.color1:       base08
+  *.color2:       base0B
+  *.color3:       base0A
+  *.color4:       base0D
+  *.color5:       base0E
+  *.color6:       base0C
+  *.color7:       base05
+  *.color8:       base03
+  *.color9:       base09
+  *.color10:      base01
+  *.color11:      base02
+  *.color12:      base04
+  *.color13:      base06
+  *.color14:      base0F
+  *.color15:      base07
+
+#else
+  *.foreground:   nord4
+  *.background:   nord0
+  *.cursorColor:  nord4
+  *fading:        35
+  *fadeColor:     nord3
+
+  *.color0:       nord1
+  *.color1:       nord11
+  *.color2:       nord14
+  *.color3:       nord13
+  *.color4:       nord9
+  *.color5:       nord15
+  *.color6:       nord8
+  *.color7:       nord5
+  *.color8:       nord3
+  *.color9:       nord11
+  *.color10:      nord14
+  *.color11:      nord13
+  *.color12:      nord9
+  *.color13:      nord15
+  *.color14:      nord7
+  *.color15:      nord6
+#endif
