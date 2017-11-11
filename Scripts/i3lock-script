@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# colors
+purple=800080
+black=000000
+
+i3lock -B 8 -e -k --indicator --line-uses-inside \
+	-c $black --ringcolor ${purple}ff --keyhlcolor 000000a0 --bshlcolor ff0000a0 \
+	--ringvercolor ${purple}ff --ringwrongcolor 700000ff \
+	--insidevercolor 000000d0 --insidewrongcolor 000000d0 --textcolor ${purple}ff \
+	--timecolor ${purple}ff --datecolor ${purple}ff \
+	--timestr "%H:%M:%S" --datestr "%b %d, %Y"
