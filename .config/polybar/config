@@ -74,11 +74,9 @@ font-0 = NotoSans-Regular:size=8;0
 font-1 = FontAwesome:size=10;0
 font-2 = Source Code Pro for Powerline:pixelsize=10;2
 
-modules-left = i3 xwindow l l
-modules-center = mpd
+modules-left = i3 xwindow l mpd-controls l
+modules-center = mpd-songinfo
 modules-right =   r r temperature r  wlo1 eno1 r battery r date r powermenu
-
-seperator = l
 
 tray-position = right
 tray-padding = 0
@@ -101,17 +99,28 @@ modules-center = mpd
 modules-right =  temperature wlo1 eno1 battery date powermenu
 module-margin-left = 3
 
+; these options dont exist, but im going to try to make them
+;modules-left-seperator = a
+;modules-right-seperator = b
+
+
 ; ========================
 ;     Window Managers
 ; ========================
 
 [module/i3]
 type = internal/i3
-format = <label-state>
+format = <label-state> <label-mode>
 index-sort = true
 pin-workspaces = true
 
+; This is extremely fragile, terrible programming.
+; clean it up a little if you can, but it works. for now.
+label-mode = %{R}%{F#D0D1D2} %mode% %{F#2B556E}%{R}%{F#D0D1D2}
+label-mode-foreground = #a00000
+
 label-focused = %index%
+label-focused-foreground = #00ff00
 label-focused-overline= #ff
 label-focused-padding = 1
 
@@ -283,10 +292,9 @@ label-unmounted = %mountpoint%: not mounted
 ;           Not designed for this bar
 ; may require tweaking, recoloring, etc.
 ; ====================================
-
 [module/mpd]
 type = internal/mpd
-format-online = <icon-prev> <icon-stop> <toggle> <icon-next>  <icon-repeat> <icon-random>  <bar-progress> <label-time>  <label-song>
+format-online = <icon-prev> <icon-stop> <toggle> <icon-next> <icon-repeat> <icon-random> <bar-progress> <label-time> <label-song>
 
 icon-play = 
 icon-pause = 
@@ -299,7 +307,7 @@ icon-repeat = 
 ;toggle-on-foreground =
 ;toggle-off-foreground = #55
 
-bar-progress-width = 45
+bar-progress-width = 20
 bar-progress-format = %{A4:mpdseek+2: A5:mpdseek-2:}%fill%%indicator%%empty%%{A A}
 bar-progress-indicator = |
 ;bar-progress-indicator-foreground = #ff
@@ -310,6 +318,14 @@ bar-progress-fill-font = 3
 bar-progress-empty = ─
 bar-progress-empty-font = 3
 ;bar-progress-empty-foreground = #44
+
+[module/mpd-controls]
+inherit = module/mpd
+format-online = <icon-prev>  <icon-stop>  <toggle>  <icon-next>
+
+[module/mpd-songinfo]
+inherit = module/mpd
+format-online = <bar-progress> <label-time> <label-song>
 
 [module/date]
 type = internal/date
@@ -322,7 +338,7 @@ type = custom/menu
 format-padding = 2
 
 label-open = 
-label-close = 
+label-close = 
 label-separator = |
 ;label-open-foreground = #e60053
 ;label-close-foreground = #e60053
