@@ -27,9 +27,15 @@ font pango:monospace 8
 # X core fonts rendering does not support right-to-left and this being a bitmap
 # font, it doesn’t scale on retina/hidpi displays.
 
-new_window pixel 3
+# setup window borders, gaps, and disable "focus on mouseover"
+#new_window pixel 3
+#new_float pixel3
+for_window [class="^.*"] border pixel 3
 gaps inner 10
 focus_follows_mouse no
+
+smart_borders on
+smart_gaps on
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -41,7 +47,7 @@ bindsym $mod+Return exec urxvt
 bindsym $mod+q kill
 
 # Lock screen
-bindsym $mod+l exec i3lock-fancy
+bindsym $mod+l exec i3lock-script
 
 # start dmenu (a program launcher)
 bindsym $mod+space exec dmenu_run
@@ -77,16 +83,14 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+d floating toggle
+bindsym $mod+Shift+z floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+d focus mode_toggle
+bindsym $mod+z focus mode_toggle
 
-# focus the parent container
+# container focus
 bindsym $mod+a focus parent
-
-# focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+d focus child
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -119,8 +123,10 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
+# Consider removing this mode.
+# it shouldnt be needed because of the "move windows" mode.
 # resize window (you can also use the mouse for that)
-mode "resize" {
+mode "Resize" {
         # These bindings trigger as soon as you enter the resize mode
 
         # Pressing left will shrink the window’s width.
@@ -145,24 +151,47 @@ mode "resize" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
+bindsym $mod+r mode "Resize"
 
-bindsym $mod+r mode "resize"
-
-# move windows
-mode "move" {
+# This mode is a monster with a million bindings!
+# The intention is if you are modifying a lot,
+# the bindings are simpler and don't require the Windows Key.
+mode "Move" {
         # These bindings trigger as soon as you enter the move mode
 
-        # Move Windows.
-        bindsym Left move Left
-        bindsym Down move Down
-        bindsym Up move Up
-        bindsym Right move Right
-
         # Change Focus
-        bindsym Shift+Left focus left
-        bindsym Shift+Down focus down
-        bindsym Shift+Up focus up
-        bindsym Shift+Right focus right
+        bindsym Left focus left
+        bindsym Down focus down
+        bindsym Up focus up
+        bindsym Right focus right
+
+        # special focus (containers, floating)
+        bindsym z focus mode_toggle
+        bindsym a focus parent
+        bindsym d focus child
+
+        # Move Windows.
+        bindsym Shift+Left move Left
+        bindsym Shift+Down move Down
+        bindsym Shift+Up move Up
+        bindsym Shift+Right move Right
+
+        # Mod1 = Alt
+        # Left - Shrink, Right - Grow, Up - Shrink, Down- Grow
+        bindsym Mod1+Left resize shrink width 10 px or 10 ppt
+        bindsym Mod1+Down resize grow height 10 px or 10 ppt
+        bindsym Mod1+Up resize shrink height 10 px or 10 ppt
+        bindsym Mod1+Right resize grow width 10 px or 10 ppt
+
+        # Change Gap Size for current workspace
+        bindsym plus gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0 gaps inner current set 0
+
+        # Change Gap Size for all workspaces
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
 
         # resize mode
         bindsym r mode "resize"
@@ -171,22 +200,11 @@ mode "move" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-bindsym $mod+m mode "move"
+bindsym $mod+m mode "Move"
 
-mode "gaps_inner" {
-        bindsym plus  gaps inner current plus 5
-        bindsym minus gaps inner current minus 5
-        bindsym 0     gaps inner current set 0
-
-        bindsym Shift+plus  gaps inner all plus 5
-        bindsym Shift+minus gaps inner all minus 5
-        bindsym Shift+0     gaps inner all set 0
-
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-bindsym $mod+g mode "gaps_inner"
-
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec light -A 5
+bindsym XF86MonBrightnessDown exec light -U 5
 
 exec polybar skybar
 # bar { }
