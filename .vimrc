@@ -1,12 +1,13 @@
 set nocompatible
 " DeadPix3l's Vimrc
- 
+
 " code related settings {{{
 set wrap                        " wrap long lines
 set number	                    " show line numbers
 set showmatch                   " highlight matching brackets: ([{}])
 syntax on                       " syntax highlighting
 filetype indent plugin on       " load filetype specific indent templates
+" set colorcolumn=80              " highlight column 80 red (ruler)
 " }}}
 
 " code block folding {{{
@@ -33,7 +34,7 @@ set autoindent                  " auto indent new lines to match pevious line
 set smartindent                 " add another indent to next line based on brackets
 " }}}
 
-"  other settings {{{
+" other settings {{{
 set confirm                     " ask to save (rather than error) on close
 set wildmenu                    " visual autocomplete for command menu
 set showcmd                     " show partial command in status bar
