@@ -2,7 +2,12 @@ if [ -f $HOME/.bash_aliases ]; then
 	source $HOME/.bash_aliases
 fi
 
-export EDITOR=vim
+if [ -f $HOME/.bash_ps1 ]; then
+    source $HOME/.bash_ps1
+fi
+
+export EDITOR="vim"
+export VISUAL="vim"
 export XDG_CONFIG_HOME="$HOME/.config/"
 
 # support GPG for SSH auth. Review this.
