@@ -2,6 +2,7 @@ URxvt*scrollBar: 			false
 URxvt*transparent: 			true
 URxvt*shading:				35	
 
+URxvt*font: xft:source code pro:regular:pizelsize=10
 ! choose color scheme [default: nord]
 ! uncomment line below to use base16
 !#define base16
