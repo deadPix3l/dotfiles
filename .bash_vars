@@ -1,4 +1,8 @@
 export EDITOR="vim"
 export VISUAL="vim"
+export TERMINAL="urxvt"
+export LAUNCHER="rofi -show run"
 export TERM="xterm-256color"
 export XDG_CONFIG_HOME="$HOME/.config/"
+
+export QT_STYLE_OVERRIDE="kvantum-dark"

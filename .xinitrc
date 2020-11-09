@@ -5,7 +5,6 @@
 ~/.fehbg &
 
 # Polybar moved to i3 config.
-# polybar skybar &
-
-# exec bspwm
-exec i3
+polybar skybar &
+exec bspwm
+#exec i3
