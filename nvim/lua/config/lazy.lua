@@ -27,6 +27,7 @@ require("lazy").setup({
     -- import your plugins
     { import = "plugins" },
     { import = "plugins.files" },
+    { import = "plugins.motion" },
     { import = "plugins.treesitter" },
     { import = "plugins.ui" },
     { import = "plugins.ui.git" },
