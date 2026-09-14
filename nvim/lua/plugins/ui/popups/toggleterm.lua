@@ -50,6 +50,33 @@ return {
       desc = "Terminal",
     },
     {
+      "<leader>tf",
+      function()
+        local Terminal = require("toggleterm.terminal").Terminal
+        term = term or Terminal:new({ 
+	  cmd = "python3", -- Replace with your desired command (e.g., "htop", "python")
+	  direction = "float",
+	  hidden = true,
+	  float_opts = {
+	    border = "rounded",
+	    -- Dynamically calculate height but clamp it to a maximum
+	    height = function()
+	      local target_height = math.floor(vim.o.lines * 0.8) -- 80% of screen
+	      local max_height = 25                               -- Hard limit of 25 lines
+	      
+	      return math.min(target_height, max_height)
+	    end,
+	    width = function()
+	      return math.floor(vim.o.columns * 0.8)
+	    end,
+	  },
+	})
+
+        term:toggle()
+      end,
+      desc = "FLoating Terminal",
+    },
+    {
       "<leader>g",
       function()
         local Terminal = require("toggleterm.terminal").Terminal
